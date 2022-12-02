@@ -61,6 +61,8 @@ Find the Elf carrying the most Calories. How many total Calories is that Elf car
     //declare a var to hold the array of sums returned by the reducer function
     //write a function that will take in the array of sums stored in the var above and return them sorted in descending order
     //return the 0th index of the sorted array, the largest total calories carried by any elf
+
+//import data module to access dataset
 const data = require('./inputDataDay1')
 
 const caloriesArr = data.split(/\n\n/).map(elf => elf.split(/\r?\n/));
@@ -74,5 +76,3 @@ const mostCalsCarried = descendingSums[0];
 const topThreeTotal = descendingSums.slice(0,3).reduce((a,c) => a+c);
 
 console.log(topThreeTotal)
-
-//for the sake of cleanliness and readability, I moved the input database to bottom of the file so it wasn't necessary 

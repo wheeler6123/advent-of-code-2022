@@ -1,3 +1,5 @@
+//placed input dataset in separate file and exported module to keep nearly 3k lines of data from cluttering program file
+
 
 const data = `6529
             8085
