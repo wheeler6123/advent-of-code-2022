@@ -2315,22 +2315,10 @@ let data = `6529
 7045
 8717`;
 
-const caloriesArr = data.split(/\n\n/);
-const elfArrays = caloriesArr.map(elf => elf.split(/\r?\n/));
 
-const sumEachElf = arr => arr.map(elf => elf.reduce((a, c) => +a + +c, 0));
+const caloriesArr = data.split(/\n\n/).map(elf => elf.split(/\r?\n/));
 
-const sums = sumEachElf(elfArrays);
-
-//const getMostCals = arr => arr.sort((a,b) => b-a)[0];
-
-//const mostCalsCarried = getMostCals(sums);
-
-//console.log(mostCalsCarried);
-
-
-//refactored some of my part 1 code to simplify it and make it more reusable for part 2
-const descendingSums = sums.sort((a,b) => b-a);
+const descendingSums = caloriesArr.map(elf => elf.reduce((a, c) => +a + +c, 0)).sort((a,b) => b-a);
 
 const mostCalsCarried = descendingSums[0];
 
