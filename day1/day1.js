@@ -65,14 +65,22 @@ Find the Elf carrying the most Calories. How many total Calories is that Elf car
 //import data module to access dataset
 const data = require('./inputDataDay1')
 
-const caloriesArr = data.split(/\n\n/).map(elf => elf.split(/\r?\n/));
+//takes input string and splits into array of sorted arrays containing total calorie load for each elf in descending order
+const totalCalsArrSortDesc = 
+    data.split(/\n\n/)
+        .map(elf => elf.split(/\r?\n/))
+        .map(elf => elf.reduce((a, c) => +a + +c, 0))
+        .sort((a,b) => b-a);
 
-const descendingSums = caloriesArr.map(elf => elf.reduce((a, c) => +a + +c, 0)).sort((a,b) => b-a);
-
-const mostCalsCarried = descendingSums[0];
+//solution for part 1
+const mostCalsCarried = totalCalsArrSortDesc[0];
 
 //add function for part two to return the sum of the total calories carried by the 3 elves carrying the most
 
-const topThreeTotal = descendingSums.slice(0,3).reduce((a,c) => a+c);
+//solution for part 2
+const topThreeTotal = totalCalsArrSortDesc.slice(0,3).reduce((a,c) => a+c);
 
-console.log(topThreeTotal)
+//ternary operator conditional to handle returning the appropriate solution
+const sendCorrectResponse = part => part === 1 ? console.log(mostCalsCarried) : console.log(topThreeTotal);
+
+sendCorrectResponse(2);
