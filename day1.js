@@ -2322,11 +2322,23 @@ const sumEachElf = arr => arr.map(elf => elf.reduce((a, c) => +a + +c, 0));
 
 const sums = sumEachElf(elfArrays);
 
-const getMostCals = arr => arr.sort((a,b) => b-a)[0];
+//const getMostCals = arr => arr.sort((a,b) => b-a)[0];
 
-const mostCalsCarried = getMostCals(sums);
+//const mostCalsCarried = getMostCals(sums);
 
-console.log(mostCalsCarried);
+//console.log(mostCalsCarried);
+
+
+//refactored some of my part 1 code to simplify it and make it more reusable for part 2
+const descendingSums = sums.sort((a,b) => b-a);
+
+const mostCalsCarried = descendingSums[0];
+
+//add function for part two to return the sum of the total calories carried by the 3 elves carrying the most
+
+const topThreeTotal = descendingSums.slice(0,3).reduce((a,c) => a+c);
+
+console.log(topThreeTotal)
 
 
 
