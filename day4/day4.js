@@ -5,7 +5,7 @@ const data = require('./inputDataDay4');
 const pairs = data.split(/\n/);
 
 //helper function to check if the zones overlap for each pair of elves
-const zonesOverlap = str => {
+const zonesOverlapComplete = str => {
   const splitElves = str.split(',');
   const elf1 = splitElves[0].split('-');
   const elf2 = splitElves[1].split('-');
@@ -14,6 +14,22 @@ const zonesOverlap = str => {
 };
 
 //return the length of an array containing all pairs that meet the criteria of overlap
-const overlappingPairs = pairs.map(pair => zonesOverlap(pair)).filter(pair => pair).length;
+const entirelyOverlappingPairs = pairs.map(pair => zonesOverlapComplete(pair)).filter(pair => pair).length;
 
-console.log(overlappingPairs)
+//Part 2
+const zonesOverlapPartial = str => {
+  const splitElves = str.split(',');
+  const elf1 = splitElves[0].split('-');
+  const elf2 = splitElves[1].split('-');
+
+  const elf1Start = +elf1[0];
+  const elf1End = +elf1[1];
+  const elf2Start = +elf2[0];
+  const elf2End = +elf2[1];
+
+  return (elf2Start <= elf1End && elf2End >= elf1Start) || (elf1Start <= elf2End && elf1End >= elf2Start)
+};
+
+const partialOverlappingPairs = pairs.map(pair => zonesOverlapPartial(pair)).filter(pair => pair).length;
+
+console.log(partialOverlappingPairs);
